@@ -31,6 +31,9 @@ The build scripts rebuild the `app/build/` folder a single time, whereas the wat
 
 ```bash
 $ npm run build
+```
+
+```bash
 $ npm run watch
 ```
 
@@ -38,6 +41,9 @@ $ npm run watch
 
 ```bash
 $ npm run build:web
+```
+
+```bash
 $ npm run watch:web
 ```
 
@@ -55,6 +61,9 @@ Create a native application for macOS or Windows. These scripts rebuild the `app
 
 ```bash
 $ npm run package
+```
+
+```bash
 $ npm run package:win
 ```
 
