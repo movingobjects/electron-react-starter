@@ -1,6 +1,6 @@
 
-const colors       = require('colors'),
-      fse          = require('fs-extra'),
+const fse          = require('fs-extra'),
+      logBox       = require('log-box'),
       parseArgs    = require('minimist'),
       { execSync } = require('child_process'),
       pkg          = require('../package.json');
@@ -27,7 +27,10 @@ const getCmd = ((browser, watch) => {
 const verb     = args.watch ? 'Watching' : 'Building',
       platform = args.browser ? 'the browser' : 'Electron';
 
-console.log(`\n${verb} ${pkg.name} (v${pkg.version}) for ${platform}...\n`.cyan);
+logBox(`${verb} ${pkg.name} (v${pkg.version}) for ${platform}`, {
+  style: 'round',
+  color: '#cf0'
+});
 
 fse.removeSync('app/build/*');
 

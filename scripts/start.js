@@ -1,13 +1,16 @@
 
 // Requires
 
-const colors       = require('colors'),
-      { execSync } = require('child_process');
+const { execSync } = require('child_process'),
+      logBox       = require('log-box');
 
 
 // Script
 
-console.log(`\nStarting Electron...\n`.cyan);
+logBox(`Starting Electron`, {
+  style: 'round',
+  color: '#cf0'
+});
 
 execSync(`electron .`, {
   stdio: 'inherit'

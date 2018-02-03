@@ -1,6 +1,6 @@
 
-const colors       = require('colors'),
-      fse          = require('fs-extra'),
+const fse          = require('fs-extra'),
+      logBox       = require('log-box'),
       parseArgs    = require('minimist'),
       { execSync } = require('child_process'),
       pkg          = require('../package.json');
@@ -26,7 +26,10 @@ const appTitle       = pkg.name,
       zipFilename    = `${dateString}-${appTitle}-mac.zip`,
       pathToWine     = `/Applications/Wine Stable.app`;
 
-console.log(`Packaging ${appTitle} for ${platformName}...`);
+logBox(`Packaging ${appTitle} for ${platformName}`, {
+  style: 'round',
+  color: '#cf0'
+});
 
 fse.removeSync(`app/build/*`);
 
@@ -49,4 +52,7 @@ if (doZip) {
 
 execSync(cmd, { stdio: 'inherit' });
 
-console.log(`Package ready: ${outputFolder}/${doZip ? zipFilename : outputFilename}`);
+logBox(`Package ready: ${outputFolder}/${doZip ? zipFilename : outputFilename}`, {
+  style: 'round',
+  color: '#cf0'
+});
