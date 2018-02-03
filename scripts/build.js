@@ -27,10 +27,7 @@ const getCmd = ((browser, watch) => {
 const verb     = args.watch ? 'Watching' : 'Building',
       platform = args.browser ? 'the browser' : 'Electron';
 
-logBox(`${verb} ${pkg.name} (v${pkg.version}) for ${platform}`, {
-  style: 'round',
-  color: '#cf0'
-});
+logBox(`${verb} ${pkg.name} (v${pkg.version}) for ${platform}`);
 
 fse.removeSync('app/build/*');
 

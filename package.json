@@ -1,6 +1,6 @@
 {
   "name": "electron-react-starter",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Boilerplate for Electron + React apps",
   "author": "Scott Thiessen (http://varyd.io)",
   "license": "ISC",
@@ -53,10 +53,19 @@
     "electron-reload": "^1.2.2",
     "fs-extra": "^5.0.0",
     "lodash": "4.17.4",
-    "log-box": "^0.2.0",
+    "log-box": "^0.4.1",
     "minimist": "^1.2.0",
     "react": "15.6.1",
     "react-dom": "15.6.1",
     "varyd-utils": "^0.6.5"
+  },
+  "log-box": {
+    "default": {
+      "style": "round",
+      "color": "#9f0",
+      "textColor": "#9f0",
+      "bold": true,
+      "margin": [ 1, 0, 2, 0 ]
+    }
   }
 }

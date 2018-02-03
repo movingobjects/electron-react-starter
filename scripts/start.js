@@ -7,10 +7,7 @@ const { execSync } = require('child_process'),
 
 // Script
 
-logBox(`Starting Electron`, {
-  style: 'round',
-  color: '#cf0'
-});
+logBox(`Starting Electron`);
 
 execSync(`electron .`, {
   stdio: 'inherit'

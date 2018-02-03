@@ -26,10 +26,7 @@ const appTitle       = pkg.name,
       zipFilename    = `${dateString}-${appTitle}-mac.zip`,
       pathToWine     = `/Applications/Wine Stable.app`;
 
-logBox(`Packaging ${appTitle} for ${platformName}`, {
-  style: 'round',
-  color: '#cf0'
-});
+logBox(`Packaging ${appTitle} for ${platformName}`);
 
 fse.removeSync(`app/build/*`);
 
@@ -52,7 +49,4 @@ if (doZip) {
 
 execSync(cmd, { stdio: 'inherit' });
 
-logBox(`Package ready: ${outputFolder}/${doZip ? zipFilename : outputFilename}`, {
-  style: 'round',
-  color: '#cf0'
-});
+logBox(`Package ready: ${outputFolder}/${doZip ? zipFilename : outputFilename}`);
