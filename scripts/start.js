@@ -12,5 +12,3 @@ console.log(`\nStarting Electron...\n`.cyan);
 execSync(`electron .`, {
   stdio: 'inherit'
 });
-
-console.log(`\nComplete.\n`.cyan);

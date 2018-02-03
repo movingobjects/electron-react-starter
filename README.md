@@ -9,14 +9,14 @@ All scripts are tested to be run on macOS. *Sorry not sorry!*
 First, clone the repo via git:
 
 ```bash
-git clone https://github.com/sccottt/electron-react-starter.git your-project-name
+$ git clone https://github.com/sccottt/electron-react-starter.git your-project-name
 ```
 
 Then, install dependencies:
 
 ```bash
-cd your-project-name
-git install
+$ cd your-project-name
+$ git install
 ```
 
 
@@ -30,15 +30,15 @@ The build scripts rebuild the `app/build/` folder a single time, whereas the wat
 #### For Electron:
 
 ```bash
-npm run build
-npm run watch
+$ npm run build
+$ npm run watch
 ```
 
 #### For the browser:
 
 ```bash
-npm run build:web
-npm run watch:web
+$ npm run build:web
+$ npm run watch:web
 ```
 
 ## Run in Electron
@@ -46,7 +46,7 @@ npm run watch:web
 Run the build in Electron, using dev environment. This is typically done in combination with `npm run watch` during development.
 
 ```bash
-npm start
+$ npm start
 ```
 
 ## Package via Electron
@@ -54,8 +54,8 @@ npm start
 Create a native application for macOS or Windows. These scripts rebuild the `app/build/` folder for production and run [Electron Packager](https://github.com/electron-userland/electron-packager) to create native applications.
 
 ```bash
-npm run package
-npm run package:win
+$ npm run package
+$ npm run package:win
 ```
 
 The windows packager requires [Wine](https://www.winehq.org) be installed. The `scripts/package-win.sh` shell script should be updated to point to the Wine application.
@@ -66,11 +66,11 @@ The windows packager requires [Wine](https://www.winehq.org) be installed. The `
 Fix permissions to the scripts in the `scripts` folder so they're executable.
 
 ```bash
-npm run enable-scripts
+$ npm run enable-scripts
 ```
 
 Clear the `node_modules` folder and reinstall all modules:
 
 ```bash
-npm run reinstall
+$ npm run reinstall
 ```
