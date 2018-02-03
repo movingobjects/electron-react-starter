@@ -1,0 +1,8 @@
+# Modules
+node_modules/
+
+# OS
+.DS_Store
+
+# Project-specific
+packages/
