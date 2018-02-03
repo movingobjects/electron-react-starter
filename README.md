@@ -1,2 +1,2 @@
-# electron-react-starter
+# Electron React Starter
 Boilerplate for Electron + React apps
