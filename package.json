@@ -65,7 +65,10 @@
       "color": "#9f0",
       "textColor": "#9f0",
       "bold": true,
-      "margin": [ 1, 0, 2, 0 ]
+      "margin": {
+        "top": 1,
+        "bottom": 2
+      }
     }
   }
 }
