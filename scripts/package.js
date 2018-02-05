@@ -15,7 +15,8 @@ const args = parseArgs(process.argv.slice(2), {
 const isWindows      = !!args.windows,
       doZip          = !!args.zip;
 
-const appTitle       = pkg.name,
+const appId          = pkg.name,
+      appTitle       = pkg.productName || pkg.name,
       appArch        = 'x64',
       appPlatform    = isWindows ? 'win32' : 'darwin',
       platformName   = isWindows ? 'Windows (via Wine)' : 'macOS',
@@ -23,7 +24,7 @@ const appTitle       = pkg.name,
       outputFilename = `${appTitle}-${appPlatform}-${appArch}`,
       date           = new Date(),
       dateString     = date.getFullYear() + "-" + ("0" + (date.getMonth() + 1)).slice(-2) + "-" + ("0" + date.getDate()).slice(-2),
-      zipFilename    = `${dateString}-${appTitle}-mac.zip`,
+      zipFilename    = `${dateString}-${appId}-mac.zip`,
       pathToWine     = `/Applications/Wine Stable.app`;
 
 logBox(`Packaging ${appTitle} for ${platformName}`);
