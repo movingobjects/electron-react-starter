@@ -22,9 +22,9 @@ $ git install
 
 ## Build/watch
 
-The build scripts rebuild the `app/build/` folder a single time, whereas the watch scripts watch for changes in the `app/src/` folder and update in real time.
+The build scripts rebuild the `app/build/` folder a single time, whereas the dev scripts watch for changes in the `app/src/` folder and update in real time.
 
-**Note**: `npm run watch:web` uses [Webpack Dev Server](https://webpack.js.org/configuration/dev-server/), which does not update the `app/build/` folder.
+**Note**: `npm run dev:web` uses [Webpack Dev Server](https://webpack.js.org/configuration/dev-server/), which does not update the `app/build/` folder.
 
 
 #### For Electron:
@@ -34,7 +34,7 @@ $ npm run build
 ```
 
 ```bash
-$ npm run watch
+$ npm run dev
 ```
 
 #### For the browser:
@@ -44,12 +44,12 @@ $ npm run build:web
 ```
 
 ```bash
-$ npm run watch:web
+$ npm run dev:web
 ```
 
 ## Run in Electron
 
-Run the build in Electron, using dev environment. This is typically done in combination with `npm run watch` during development.
+Run the build in Electron, using dev environment. This is typically done in combination with `npm run dev` during development.
 
 ```bash
 $ npm start

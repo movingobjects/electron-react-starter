@@ -25,8 +25,8 @@
     "package:win": "node ./scripts/package.js -w",
     "reinstall": "rm -rf node_modules; npm i",
     "start": "node ./scripts/start.js",
-    "watch": "node ./scripts/build.js -w",
-    "watch:web": "node ./scripts/build.js -wb"
+    "dev": "node ./scripts/build.js -w",
+    "dev:web": "node ./scripts/build.js -wb"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
