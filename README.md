@@ -30,13 +30,13 @@ $ npm run dev:web
 
 ## Build for Electron
 
-Watch for changes in the `app/src/` folder and rebuild `app/build` in real time:
+Watch for changes in the `app/src/` folder and rebuild `app/build/` in real time:
 
 ```bash
 $ npm run dev
 ```
 
-Rebuild the `app/build` folder for Electron a single time:
+Rebuild the `app/build/` folder for Electron a single time:
 
 ```bash
 $ npm run build
@@ -45,11 +45,14 @@ $ npm run build
 
 ## Run in Electron
 
-Run the build in Electron, using dev environment. This is typically run while `npm run dev` is running in another Terminal tab.
+Run the build in Electron, using dev environment.
 
 ```bash
 $ npm start
 ```
+
+This is typically run while `npm run dev` is running in another Terminal tab.
+
 
 
 ## Package using Electron
@@ -69,7 +72,7 @@ Packaging an application for Windows (using macOS) requires [Wine](https://www.w
 
 ### Package configuration
 
-The package script can be configured in the `package.json` file inside the namespace `packageApp`:
+Default configuration of the package script can be overwritten in the `package.json` file inside the namespace `packageApp`:
 
 ```js
 {
