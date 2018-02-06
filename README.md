@@ -14,6 +14,11 @@ Boilerplate for Electron + React apps.
     $ cd path/to/your-project
     $ npm install
     ```
+1. Start it up!
+
+    ```bash
+    $ npm start
+    ```
 
 You can also `git clone` or [mirror](https://help.github.com/articles/duplicating-a-repository/) the repo and retain the full commit history.
 
