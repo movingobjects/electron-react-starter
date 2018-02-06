@@ -1,7 +1,7 @@
 # Electron React Starter
 Boilerplate for Electron + React apps.
 
-All scripts are tested to be run on macOS. *Sorry not sorry!*
+*Note: Scripts are set up to be run on macOS (but maybe work on Windows?).*
 
 
 ## Install
@@ -19,43 +19,40 @@ $ cd your-project-name
 $ git install
 ```
 
+## Dev using the browser
 
-## Build/watch
-
-The build scripts rebuild the `app/build/` folder a single time, whereas the dev scripts watch for changes in the `app/src/` folder and update in real time.
-
-**Note**: `npm run dev:web` uses [Webpack Dev Server](https://webpack.js.org/configuration/dev-server/), which does not update the `app/build/` folder.
-
-
-#### For Electron:
-
-```bash
-$ npm run build
-```
-
-```bash
-$ npm run dev
-```
-
-#### For the browser:
-
-```bash
-$ npm run build:web
-```
+Build & watch the application using [Webpack Dev Server](https://webpack.js.org/configuration/dev-server/). This can be useful for quick CSS injection.
 
 ```bash
 $ npm run dev:web
 ```
 
+
+## Build for Electron
+
+Watch for changes in the `app/src/` folder and rebuild `app/build` in real time:
+
+```bash
+$ npm run dev
+```
+
+Rebuild the `app/build` folder for Electron a single time:
+
+```bash
+$ npm run build
+```
+
+
 ## Run in Electron
 
-Run the build in Electron, using dev environment. This is typically done in combination with `npm run dev` during development.
+Run the build in Electron, using dev environment. This is typically run while `npm run dev` is running in another Terminal tab.
 
 ```bash
 $ npm start
 ```
 
-## Package via Electron
+
+## Package using Electron
 
 Create a native application for macOS or Windows. These scripts rebuild the `app/build/` folder for production and run [Electron Packager](https://github.com/electron-userland/electron-packager) to create native applications.
 
@@ -67,7 +64,38 @@ $ npm run package
 $ npm run package:win
 ```
 
-The windows packager requires [Wine](https://www.winehq.org) be installed. The `scripts/package-win.sh` shell script should be updated to point to the Wine application.
+Packaging an application for Windows (using macOS) requires [Wine](https://www.winehq.org) be installed.
+
+
+### Package configuration
+
+The package script can be configured in the `package.json` file inside the namespace `packageApp`:
+
+```js
+{
+  "name": "electron-react-starter",
+  ...
+  "packageApp": {
+    "outputFolder": "packages",
+    "zip": false,
+    "appIcon": {
+      "mac": "resources/app-icon.icns",
+      "win": "resources/app-icon.ico"
+    },
+    "arch": "x64",
+    "winePath": "/Applications/Wine Stable.app"
+  },
+  ...
+}
+```
+
+##### Config values
+- `outputFolder` [string]: the name of the folder packaged apps will be created in (default: `"packages"`)
+- `zip` [boolean]: automatically create a date-stamped zip file of the packaged app (default: `false`)
+- `appIcon` [object]: paths to Mac and Windows app icons (default: `undefined`)
+- `arch` [string]: processor architecture (default: `"x64"`)
+- `winePath` [string]: path to [Wine](https://www.winehq.org) application, which must be installed in order to package for Windows
+
 
 
 ## Other scripts
