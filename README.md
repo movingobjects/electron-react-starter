@@ -22,9 +22,10 @@ Boilerplate for Electron + React apps.
 
 You can also `git clone` or [mirror](https://help.github.com/articles/duplicating-a-repository/) the repo and retain the full commit history.
 
+
 ## Dev using the browser
 
-Build & watch the application using [Webpack Dev Server](https://webpack.js.org/configuration/dev-server/). This can be useful for quick CSS injection.
+Build & watch the application using [webpack-dev-server](https://github.com/webpack/webpack-dev-server). This can be especially useful for quick CSS injection.
 
 ```bash
 $ npm run dev:web
