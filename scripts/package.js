@@ -23,6 +23,10 @@ const appPlatform    = toWindows ? 'win32' : 'darwin',
       platformName   = toWindows ? 'Windows (via Wine)' : 'macOS',
       appArch        = pkgConf.arch || 'x64';
 
+const appIconMac     = pkgConf.appIcon ? (pkgConf.appIcon.mac || undefined) : undefined,
+      appIconWin     = pkgConf.appIcon ? (pkgConf.appIcon.win || undefined) : undefined,
+      appIcon        = toWindows ? appIconWin : appIconMac;
+
 const outputFolder   = pkgConf.outputFolder || 'packages',
       outputFilename = `${appTitle}-${appPlatform}-${appArch}`,
       winePath       = pkgConf.winePath || '/Applications/Wine Stable.app';
@@ -45,7 +49,13 @@ const makeCmd = () => {
         + `setenv PATH "${winePath}/Contents/Resources/start/bin:${winePath}/Contents/Resources/wine/bin:$PATH";`;
   }
 
-  cmd += `electron-packager . '${appTitle}' --out=${outputFolder} --overwrite --platform=${appPlatform} --arch=${appArch};`;
+  cmd += `electron-packager . '${appTitle}' --out=${outputFolder} --overwrite`;
+
+  if (appIcon && fse.pathExistsSync(appIcon)) {
+    cmd += ` --icon=${appIcon}`
+  }
+
+  cmd += ` --platform=${appPlatform} --arch=${appArch};`;
 
   if (zipIt) {
     cmd += `cd ${outputFolder};`
