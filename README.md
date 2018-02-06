@@ -6,18 +6,16 @@ Boilerplate for Electron + React apps.
 
 ## Install
 
-First, clone the repo via git:
+1. [Download](https://github.com/sccottt/electron-react-starter/archive/master.zip) the repo
+1. Update `package.json` to fit your specific project
+1. Install dependencies
 
-```bash
-$ git clone https://github.com/sccottt/electron-react-starter.git your-project-name
-```
+    ```bash
+    $ cd path/to/your-project
+    $ npm install
+    ```
 
-Then, install dependencies:
-
-```bash
-$ cd your-project-name
-$ git install
-```
+You can also `git clone` or [mirror](https://help.github.com/articles/duplicating-a-repository/) the repo and retain the full commit history.
 
 ## Dev using the browser
 
