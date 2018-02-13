@@ -1,7 +1,7 @@
 {
   "name": "electron-react-starter",
   "productName": "Electron React Starter",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "description": "Boilerplate for Electron + React apps",
   "author": "Scott Thiessen (http://varyd.io)",
   "license": "ISC",
@@ -32,6 +32,7 @@
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
+    "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-react": "^6.24.1",
     "copy-webpack-plugin": "4.0.1",
@@ -54,7 +55,7 @@
     "electron-reload": "^1.2.2",
     "fs-extra": "^5.0.0",
     "lodash": "4.17.4",
-    "log-box": "^0.4.1",
+    "log-box": "^0.4.3",
     "minimist": "^1.2.0",
     "react": "15.6.1",
     "react-dom": "15.6.1",

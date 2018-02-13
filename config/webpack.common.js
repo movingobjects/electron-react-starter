@@ -38,7 +38,10 @@ module.exports = {
         exclude: /node_modules/,
         options: {
           presets: ['react'],
-          plugins: ['transform-object-rest-spread'],
+          plugins: [
+            'transform-object-rest-spread',
+            'transform-class-properties'
+          ],
         }
       },
 
