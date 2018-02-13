@@ -1,7 +1,7 @@
 {
   "name": "electron-react-starter",
   "productName": "Electron React Starter",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "Boilerplate for Electron + React apps",
   "author": "Scott Thiessen (http://varyd.io)",
   "license": "ISC",
@@ -61,14 +61,15 @@
     "varyd-utils": "^0.6.5"
   },
   "packageApp": {
-    "outputFolder": "packages",
-    "zip": false,
     "appIcon": {
-      "mac": "resources/app-icon.icns",
-      "win": "resources/app-icon.ico"
+      "icns": "resources/app-icon.icns",
+      "ico": "resources/app-icon.ico"
     },
     "arch": "x64",
-    "winePath": "/Applications/Wine Stable.app"
+    "buildFolder": "app/build",
+    "outputFolder": "packages",
+    "winePath": "/Applications/Wine Stable.app",
+    "zip": false
   },
   "log-box": {
     "default": {

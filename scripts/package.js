@@ -23,18 +23,19 @@ const appPlatform    = toWindows ? 'win32' : 'darwin',
       platformName   = toWindows ? 'Windows (via Wine)' : 'macOS',
       appArch        = pkgConf.arch || 'x64';
 
-const appIconMac     = pkgConf.appIcon ? (pkgConf.appIcon.mac || undefined) : undefined,
-      appIconWin     = pkgConf.appIcon ? (pkgConf.appIcon.win || undefined) : undefined,
+const appIconMac     = pkgConf.appIcon ? (pkgConf.appIcon.icns || undefined) : undefined,
+      appIconWin     = pkgConf.appIcon ? (pkgConf.appIcon.ico  || undefined) : undefined,
       appIcon        = toWindows ? appIconWin : appIconMac;
 
-const outputFolder   = pkgConf.outputFolder || 'packages',
+const buildFolder    = pkgConf.buildFolder || 'app/build',
+      outputFolder   = pkgConf.outputFolder || 'packages',
       outputFilename = `${appTitle}-${appPlatform}-${appArch}`,
       winePath       = pkgConf.winePath || '/Applications/Wine Stable.app';
 
 const date           = new Date(),
       dateString     = date.getFullYear() + "-" + ("0" + (date.getMonth() + 1)).slice(-2) + "-" + ("0" + date.getDate()).slice(-2),
       zipIt          = !!pkgConf.zip,
-      zipFilename    = `${dateString}-${appId}-mac.zip`;
+      zipFilename    = `${dateString}-${appId}-${appPlatform}-${appArch}.zip`;
 
 
 const makeCmd = () => {
@@ -70,7 +71,7 @@ const makeCmd = () => {
 
 logBox(`Packaging ${appTitle} for ${platformName}`);
 
-fse.removeSync(`app/build/*`);
+fse.removeSync(`${buildFolder}/*`);
 
 execSync(makeCmd(), { stdio: 'inherit' });
 
