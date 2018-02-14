@@ -1,7 +1,7 @@
 {
   "name": "electron-react-starter",
   "productName": "Electron React Starter",
-  "version": "0.2.8",
+  "version": "0.2.9",
   "description": "Boilerplate for Electron + React apps",
   "author": "Scott Thiessen (http://varyd.io)",
   "license": "ISC",
@@ -25,6 +25,7 @@
     "package": "node ./scripts/package.js",
     "package:win": "node ./scripts/package.js -w",
     "reinstall": "rm -rf node_modules; npm i",
+    "clear-packages": "rm -rf app/packages",
     "start": "node ./scripts/start.js",
     "dev": "node ./scripts/build.js -w",
     "dev:web": "node ./scripts/build.js -wb"
