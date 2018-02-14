@@ -18,6 +18,11 @@ Boilerplate for Electron + React apps.
     $ cd path/to/your-project
     $ npm install
     ```
+1. Build the source
+
+    ```bash
+    $ npm run build
+    ```
 1. Start it up!
 
     ```bash

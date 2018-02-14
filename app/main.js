@@ -2,9 +2,11 @@
 const { app, BrowserWindow } = require('electron'),
       electronReload         = require('electron-reload');
 
+const BUILD_FOLDER = `/build/`;
+
 let win;
 
-electronReload(__dirname + '/app/build/');
+electronReload(__dirname + BUILD_FOLDER);
 
 app.on('ready', () => {
 
@@ -13,7 +15,7 @@ app.on('ready', () => {
     height: 500
   });
 
-  win.loadURL(`file://${__dirname}/app/build/index.html`);
+  win.loadURL(`file://${__dirname}${BUILD_FOLDER}index.html`);
 
 });
 
