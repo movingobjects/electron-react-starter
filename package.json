@@ -1,7 +1,7 @@
 {
   "name": "electron-react-starter",
   "productName": "Electron React Starter",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Boilerplate for Electron + React apps",
   "author": "Scott Thiessen (http://varyd.io)",
   "license": "ISC",
