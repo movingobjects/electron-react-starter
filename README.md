@@ -83,11 +83,12 @@ Default configuration of the package script can be overwritten in the `package.j
   "name": "electron-react-starter",
   ...
   "packageApp": {
-    "outputFolder": "packages",
+    "buildFolder": "app/build",
+    "outputFolder": "app/packages",
     "zip": false,
     "appIcon": {
-      "mac": "resources/app-icon.icns",
-      "win": "resources/app-icon.ico"
+      "icns": "app/resources/app-icon.icns",
+      "ico": "app/resources/app-icon.ico"
     },
     "arch": "x64",
     "winePath": "/Applications/Wine Stable.app"
@@ -97,9 +98,10 @@ Default configuration of the package script can be overwritten in the `package.j
 ```
 
 ##### Config values
-- `outputFolder` [string]: the name of the folder packaged apps will be created in (default: `"packages"`)
+- `buildFolder` [string]: the name of the folder where webpack builds the app (default: `"app/build"`)
+- `outputFolder` [string]: the name of the folder packaged apps will be created in (default: `"app/packages"`)
 - `zip` [boolean]: automatically create a date-stamped zip file of the packaged app (default: `false`)
-- `appIcon` [object]: paths to Mac and Windows app icons (default: `undefined`)
+- `appIcon` [object]: paths to Mac (`icns`) and Windows (`ico`) app icons (default: `undefined`)
 - `arch` [string]: processor architecture (default: `"x64"`)
 - `winePath` [string]: path to [Wine](https://www.winehq.org) application, which must be installed in order to package for Windows
 

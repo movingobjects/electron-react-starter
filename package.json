@@ -63,8 +63,8 @@
   },
   "packageApp": {
     "appIcon": {
-      "icns": "resources/app-icon.icns",
-      "ico": "resources/app-icon.ico"
+      "icns": "app/resources/app-icon.icns",
+      "ico": "app/resources/app-icon.ico"
     },
     "arch": "x64",
     "buildFolder": "app/build",
