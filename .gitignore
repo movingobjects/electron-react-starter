@@ -5,4 +5,5 @@ node_modules/
 .DS_Store
 
 # Project-specific
-packages/
+app/build/
+app/packages/

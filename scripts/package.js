@@ -28,7 +28,7 @@ const appIconMac     = pkgConf.appIcon ? (pkgConf.appIcon.icns || undefined) : u
       appIcon        = toWindows ? appIconWin : appIconMac;
 
 const buildFolder    = pkgConf.buildFolder || 'app/build',
-      outputFolder   = pkgConf.outputFolder || 'packages',
+      outputFolder   = pkgConf.outputFolder || 'app/packages',
       outputFilename = `${appTitle}-${appPlatform}-${appArch}`,
       winePath       = pkgConf.winePath || '/Applications/Wine Stable.app';
 
