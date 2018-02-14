@@ -32,7 +32,7 @@ if (args.scripts) {
 
 if (args.packages) {
   console.log(`Clearing ${pathPackageOutput} folder...`);
-  fse.removeSync(`${pathPackageOutput}/*`);
+  fse.removeSync(`${pathPackageOutput}`);
   console.log(``);
 }
 

@@ -68,7 +68,7 @@ const getCmd = () => {
 
 logBox(`Packaging '${appTitle}' v${appVersion} for ${platformName}`);
 
-fse.removeSync(`${pathBuild}/*`);
+fse.removeSync(`${pathBuild}`);
 
 execSync(getCmd(), { stdio: 'inherit' });
 

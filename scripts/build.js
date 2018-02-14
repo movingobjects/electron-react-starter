@@ -34,6 +34,6 @@ const getCmd = () => {
 
 logBox(`${verb} '${appTitle}' v${appVersion} for ${platform}`);
 
-fse.removeSync(`${pathBuild}/*`);
+fse.removeSync(`${pathBuild}`);
 
 execSync(getCmd(), { stdio: 'inherit' });
