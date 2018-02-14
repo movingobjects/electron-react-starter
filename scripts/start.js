@@ -9,6 +9,4 @@ const { execSync } = require('child_process'),
 
 logBox(`Starting Electron`);
 
-execSync(`electron .`, {
-  stdio: 'inherit'
-});
+execSync(`electron .`, { stdio: 'inherit' });

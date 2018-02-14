@@ -1,11 +1,8 @@
 
-const PKG_CONF_NAMESPACE = 'packageApp';
-
 const fse            = require('fs-extra'),
       logBox         = require('log-box'),
       parseArgs      = require('minimist'),
-      { execSync }   = require('child_process'),
-      pkg            = require('../package.json');
+      { execSync }   = require('child_process');
 
 const args           = parseArgs(process.argv.slice(2), {
   alias: {
@@ -13,44 +10,43 @@ const args           = parseArgs(process.argv.slice(2), {
   }
 });
 
-const pkgConf        = pkg[PKG_CONF_NAMESPACE] || {},
-      toWindows      = !!args.windows;
+const appId          = process.env.npm_package_name,
+      appTitle       = process.env.npm_package_productName || process.env.npm_package_name,
+      appVersion     = process.env.npm_package_version;
 
-const appId          = pkg.name,
-      appTitle       = pkg.productName || pkg.name;
-
-const appPlatform    = toWindows ? 'win32' : 'darwin',
+const toWindows      = !!args.windows,
+      appPlatform    = toWindows ? 'win32' : 'darwin',
       platformName   = toWindows ? 'Windows (via Wine)' : 'macOS',
-      appArch        = pkgConf.arch || 'x64';
+      appArch        = process.env.npm_package_config_package_arch || 'x64',
+      pathWine       = process.env.npm_package_config_package_pathWine || '/Applications/Wine Stable.app';
 
-const appIconMac     = pkgConf.appIcon ? (pkgConf.appIcon.icns || undefined) : undefined,
-      appIconWin     = pkgConf.appIcon ? (pkgConf.appIcon.ico  || undefined) : undefined,
+const appIconMac     = process.env.npm_package_config_package_appIcon_icns || undefined,
+      appIconWin     = process.env.npm_package_config_package_appIcon_ico  || undefined,
       appIcon        = toWindows ? appIconWin : appIconMac;
 
-const buildFolder    = pkgConf.buildFolder || 'app/build',
-      outputFolder   = pkgConf.outputFolder || 'app/packages',
-      outputFilename = `${appTitle}-${appPlatform}-${appArch}`,
-      winePath       = pkgConf.winePath || '/Applications/Wine Stable.app';
+const pathBuild      = process.env.npm_package_config_pathBuild,
+      pathOutput     = process.env.npm_package_config_package_pathOutput,
+      outputFilename = `${appTitle}-${appPlatform}-${appArch}`;
 
 const date           = new Date(),
       dateString     = date.getFullYear() + "-" + ("0" + (date.getMonth() + 1)).slice(-2) + "-" + ("0" + date.getDate()).slice(-2),
-      zipIt          = !!pkgConf.zip,
+      zipIt          = process.env.npm_package_config_package_zip === true,
       zipFilename    = `${dateString}-${appId}-${appPlatform}-${appArch}.zip`;
 
 
-const makeCmd = () => {
+const getCmd = () => {
 
   let cmd = '';
 
   cmd += `webpack --config config/webpack.prod.js;`
-      + `mkdir -p ${outputFolder};`;
+      +  `mkdir -p ${pathOutput};`;
 
   if (toWindows) {
     cmd += `test "$?BASH_VERSION" = "0" || eval 'setenv() { export "$1=$2"; }';`
-        + `setenv PATH "${winePath}/Contents/Resources/start/bin:${winePath}/Contents/Resources/wine/bin:$PATH";`;
+        +  `setenv PATH "${pathWine}/Contents/Resources/start/bin:${pathWine}/Contents/Resources/wine/bin:$PATH";`;
   }
 
-  cmd += `electron-packager . '${appTitle}' --out=${outputFolder} --overwrite`;
+  cmd += `electron-packager . '${appTitle}' --out=${pathOutput} --overwrite`;
 
   if (appIcon && fse.pathExistsSync(appIcon)) {
     cmd += ` --icon=${appIcon}`
@@ -59,20 +55,21 @@ const makeCmd = () => {
   cmd += ` --platform=${appPlatform} --arch=${appArch};`;
 
   if (zipIt) {
-    cmd += `cd ${outputFolder};`
-        + `zip -r '${zipFilename}' '${outputFilename}';`
-        + `rm -rf '${outputFilename}';`
-        + `cd ..;`;
+    cmd += `cd ${pathOutput};`
+        +  `zip -r '${zipFilename}' '${outputFilename}';`
+        +  `rm -rf '${outputFilename}';`
+        +  `cd ..;`;
   }
 
   return cmd;
 
-}
+};
 
-logBox(`Packaging ${appTitle} for ${platformName}`);
 
-fse.removeSync(`${buildFolder}/*`);
+logBox(`Packaging '${appTitle}' v${appVersion} for ${platformName}`);
 
-execSync(makeCmd(), { stdio: 'inherit' });
+fse.removeSync(`${pathBuild}/*`);
 
-logBox(`Package ready: ${outputFolder}/${zipIt ? zipFilename : outputFilename}`);
+execSync(getCmd(), { stdio: 'inherit' });
+
+logBox(`Package ready: ${pathOutput}/${zipIt ? zipFilename : outputFilename}`);

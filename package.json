@@ -1,7 +1,7 @@
 {
   "name": "electron-react-starter",
   "productName": "Electron React Starter",
-  "version": "0.2.10",
+  "version": "0.3.0",
   "description": "Boilerplate for Electron + React apps",
   "author": "Scott Thiessen (http://varyd.io)",
   "license": "ISC",
@@ -19,16 +19,30 @@
   },
   "main": "app/main.js",
   "scripts": {
-    "build": "node ./scripts/build.js",
     "build:web": "node ./scripts/build.js -b",
-    "enable-scripts": "chmod +x ./scripts/*",
+    "build": "node ./scripts/build.js",
+    "clean": "node ./scripts/clean -spm",
+    "clear-packages": "node ./scripts/clean.js -p",
+    "dev": "node ./scripts/build.js -w",
+    "dev:web": "node ./scripts/build.js -wb",
+    "enable-scripts": "node ./scripts/clean -s",
     "package": "node ./scripts/package.js",
     "package:win": "node ./scripts/package.js -w",
-    "reinstall": "rm -rf node_modules; npm i",
-    "clear-packages": "rm -rf app/packages",
-    "start": "node ./scripts/start.js",
-    "dev": "node ./scripts/build.js -w",
-    "dev:web": "node ./scripts/build.js -wb"
+    "reinstall": "node ./scripts/clean.js -m",
+    "start": "node ./scripts/start.js"
+  },
+  "config": {
+    "package": {
+      "appIcon": {
+        "icns": "app/resources/app-icon.icns",
+        "ico": "app/resources/app-icon.ico"
+      },
+      "arch": "x64",
+      "pathOutput": "app/packages",
+      "pathWine": "/Applications/Wine Stable.app",
+      "zip": false
+    },
+    "pathBuild": "app/build"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
@@ -61,17 +75,6 @@
     "react": "15.6.1",
     "react-dom": "15.6.1",
     "varyd-utils": "^0.6.5"
-  },
-  "packageApp": {
-    "appIcon": {
-      "icns": "app/resources/app-icon.icns",
-      "ico": "app/resources/app-icon.ico"
-    },
-    "arch": "x64",
-    "buildFolder": "app/build",
-    "outputFolder": "app/packages",
-    "winePath": "/Applications/Wine Stable.app",
-    "zip": false
   },
   "log-box": {
     "default": {
