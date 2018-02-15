@@ -24,8 +24,8 @@ const appIconMac     = process.env.npm_package_config_package_appIcon_icns || un
       appIconWin     = process.env.npm_package_config_package_appIcon_ico  || undefined,
       appIcon        = toWindows ? appIconWin : appIconMac;
 
-const pathBuild      = process.env.npm_package_config_pathBuild,
-      pathOutput     = process.env.npm_package_config_package_pathOutput,
+const pathBuild      = process.env.npm_package_config_pathBuild || 'app/build',
+      pathOutput     = process.env.npm_package_config_package_pathOutput || 'app/packages',
       outputFilename = `${appTitle}-${appPlatform}-${appArch}`;
 
 const date           = new Date(),
