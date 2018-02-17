@@ -66,7 +66,7 @@ root
 - #### `packages`
     Electron packaged native application builds are created here (by default).
 
-    _**Note**: Ignored in `.gitignore`. Path be configured in `package.json`._
+    _**Note**: Ignored in `.gitignore`. Path name configurable in `package.json`._
 
 - #### `scripts`
     Stores NPM scripts detailed [below](#scripts).
