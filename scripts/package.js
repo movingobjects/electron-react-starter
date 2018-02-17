@@ -4,33 +4,27 @@ const fse            = require('fs-extra'),
       parseArgs      = require('minimist'),
       { execSync }   = require('child_process');
 
-const args           = parseArgs(process.argv.slice(2), {
-  alias: {
-    w: 'windows'
-  }
-});
+const args           = parseArgs(process.argv.slice(2));
 
 const appId          = process.env.npm_package_name,
       appTitle       = process.env.npm_package_productName || process.env.npm_package_name,
       appVersion     = process.env.npm_package_version;
 
-const toWindows      = !!args.windows,
-      appPlatform    = toWindows ? 'win32' : 'darwin',
-      platformName   = toWindows ? 'Windows (via Wine)' : 'macOS',
-      appArch        = process.env.npm_package_config_package_arch || 'x64',
-      pathWine       = process.env.npm_package_config_package_pathWine || '/Applications/Wine Stable.app';
+const packageTarget  = args.target || 'mac',
+      targetPrefix   = `npm_package_config_targets_${packageTarget}`;
 
-const appIconMac     = process.env.npm_package_config_package_appIcon_icns || undefined,
-      appIconWin     = process.env.npm_package_config_package_appIcon_ico  || undefined,
-      appIcon        = toWindows ? appIconWin : appIconMac;
+const appPlatform    = process.env[`${targetPrefix}_platform`] || 'darwin',
+      appArch        = process.env[`${targetPrefix}_arch`]     || 'x64',
+      appIcon        = process.env[`${targetPrefix}_icon`]     || undefined,
+      envPath        = process.env[`${targetPrefix}_envPath`]  || undefined;
 
-const pathBuild      = process.env.npm_package_config_pathBuild || 'app/build',
-      pathOutput     = process.env.npm_package_config_package_pathOutput || 'app/packages',
+const pathBuild      = process.env.npm_package_config_pathBuild  || 'app/build',
+      pathOutput     = process.env.npm_package_config_pathOutput || 'packages',
       outputFilename = `${appTitle}-${appPlatform}-${appArch}`;
 
 const date           = new Date(),
       dateString     = date.getFullYear() + "-" + ("0" + (date.getMonth() + 1)).slice(-2) + "-" + ("0" + date.getDate()).slice(-2),
-      zipIt          = process.env.npm_package_config_package_zip === true,
+      zipPackage     = process.env.npm_package_config_zipPackage === true,
       zipFilename    = `${dateString}-${appId}-${appPlatform}-${appArch}.zip`;
 
 
@@ -41,9 +35,9 @@ const getCmd = () => {
   cmd += `webpack --config ./webpack.prod.js;`
       +  `mkdir -p ${pathOutput};`;
 
-  if (toWindows) {
+  if (envPath) {
     cmd += `test "$?BASH_VERSION" = "0" || eval 'setenv() { export "$1=$2"; }';`
-        +  `setenv PATH "${pathWine}/Contents/Resources/start/bin:${pathWine}/Contents/Resources/wine/bin:$PATH";`;
+        +  `setenv PATH "${envPath}:$PATH";`;
   }
 
   cmd += `electron-packager . '${appTitle}' --out=${pathOutput} --overwrite`;
@@ -54,7 +48,7 @@ const getCmd = () => {
 
   cmd += ` --platform=${appPlatform} --arch=${appArch};`;
 
-  if (zipIt) {
+  if (zipPackage) {
     cmd += `cd ${pathOutput};`
         +  `zip -r '${zipFilename}' '${outputFilename}';`
         +  `rm -rf '${outputFilename}';`
@@ -66,10 +60,10 @@ const getCmd = () => {
 };
 
 
-logBox(`Packaging '${appTitle}' v${appVersion} for ${platformName}`);
+logBox(`Packaging '${appTitle}' v${appVersion} for ${appPlatform}-${appArch}`);
 
 fse.removeSync(`${pathBuild}`);
 
 execSync(getCmd(), { stdio: 'inherit' });
 
-logBox(`Package ready: ${pathOutput}/${zipIt ? zipFilename : outputFilename}`);
+logBox(`Package ready: ${pathOutput}/${zipPackage ? zipFilename : outputFilename}`);

@@ -32,17 +32,22 @@
     "start": "node ./scripts/start.js"
   },
   "config": {
-    "package": {
-      "appIcon": {
-        "icns": "app/resources/app-icon.icns",
-        "ico": "app/resources/app-icon.ico"
+    "pathBuild": "app/build",
+    "pathOutput": "packages",
+    "targets": {
+      "mac": {
+        "platform": "darwin",
+        "arch": "x64",
+        "icon": "app/resources/app-icon.icns"
       },
-      "arch": "x64",
-      "pathOutput": "app/packages",
-      "pathWine": "/Applications/Wine Stable.app",
-      "zip": false
+      "win": {
+        "platform": "win32",
+        "arch": "x64",
+        "icon": "app/resources/app-icon.ico",
+        "envPath": "/Applications/Wine Stable.app/Contents/Resources/start/bin:/Applications/Wine Stable.app/Contents/Resources/wine/bin"
+      }
     },
-    "pathBuild": "app/build"
+    "zipPackage": false
   },
   "devDependencies": {
     "babel-core": "^6.26.0",

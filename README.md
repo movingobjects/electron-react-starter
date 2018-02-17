@@ -39,88 +39,100 @@ You can also `git clone` or [mirror](https://help.github.com/articles/duplicatin
 root
 ├── app
 │   ├── build
-│   ├── packages
 │   ├── resources
 │   └── src
-├── config
+└── packages
 └── scripts
 ```
 
 - #### `root`
-    Stores `.gitignore`, `LICENSE`, `package.json`, and `README.md` files. Try to store files here as sparingly as possible.
+    Stores `.gitignore`, `package.json`, and `README.md`, along with Webpack and other configuration files (e.g., `.babelrc`, `.editorconfig`).
 
-- #### `app/`
-    Stores source code, builds/packages, and resources related specifically to the application. Electron [main process](https://electronjs.org/docs/glossary#main-process) code (e.g., `main.js`) sits directly inside this folder.
+- #### `app`
+    Stores source code and resources related specifically to the application. Electron [main process](https://electronjs.org/docs/glossary#main-process) code (e.g., `main.js`) sits directly inside this folder.
 
-    - #### `app/build/`
-        Stores the Webpack compiled `app/src/` code. This is the code Electron uses for the [renderer process](https://electronjs.org/docs/glossary#renderer-process). _Ignored in `.gitignore`_.
+    - #### `app/build`
+        The compiled build of the `app/src/` folder is created here. This is the code Electron uses for the [renderer process](https://electronjs.org/docs/glossary#renderer-process).
 
-    - #### `app/packages/`
-        Stores the Electron packaged native applications. _Ignored in `.gitignore`_.
+        _**Note**: Ignored in `.gitignore`._
 
-    - #### `app/resources/`
+    - #### `app/resources`
         Stores application-related resource files, like application icons.
 
-    - #### `app/src/`
+    - #### `app/src`
         Stores the source code (which includes React components and any other scripts, HTML, styles, fonts, images, etc) for the Electron [renderer process](https://electronjs.org/docs/glossary#renderer-process). These can be structured in whatever way makes sense for the project.
 
-- #### `config/`
-    Stores configuration files for Webpack, and potentially any other build-level configuration files.
 
-- #### `scripts/`
+- #### `packages`
+    Electron packaged native application builds are created here (by default).
+
+    _**Note**: Ignored in `.gitignore`. Path be configured in `package.json`._
+
+- #### `scripts`
     Stores NPM scripts detailed [below](#scripts).
 
 ## Configuration
 
-Default configuration of the [scripts](#scripts) below can be overwritten in the `package.json` file, inside the `config` node:
+Default configuration of the [NPM scripts](#scripts) below can be overwritten in the `package.json` file, inside the `config` node:
 
 ```js
 {
   "name": "electron-react-starter",
   ...
   "config": {
-    "package": {
-      "appIcon": {
-        "icns": "app/resources/app-icon.icns",
-        "ico": "app/resources/app-icon.ico"
+    "pathBuild": "app/build",
+    "pathOutput": "packages",
+    "targets": {
+      "mac": {
+        "platform": "darwin",
+        "arch": "x64",
+        "icon": "app/resources/app-icon.icns"
       },
-      "arch": "x64",
-      "pathOutput": "app/packages",
-      "pathWine": "/Applications/Wine Stable.app",
-      "zip": false
+      "win": {
+        "platform": "win32",
+        "arch": "x64",
+        "icon": "app/resources/app-icon.ico",
+        "envPath": "/Applications/Wine Stable.app/Contents/Resources/start/bin:/Applications/Wine Stable.app/Contents/Resources/wine/bin"
+      }
     },
-    "pathBuild": "app/build"
+    "zipPackage": false
   },
   ...
 }
 ```
+- #### `pathBuild` [string]
 
-- #### `package`
-    Config values pertaining to the `package` script
+    Path to folder where Webpack compiles builds of the source (default: `"app/build"`)
 
-    - #### `appIcon` [object]
+    _**Note**: while this config value changes the path in the NPM scripts, it does not affect Webpack or Electron. To change the name of this folder, you will need to make changes in `webpack.common.json` and `app/main.js`._
 
-        Paths to Mac (`icns`) and Windows (`ico`) app icons (default: `undefined`)
+- #### `pathOutput` [string]
+
+    Path to the folder where packaged apps should be created (default: `"app/packages"`)
+
+
+- #### `targets` [object]
+    Settings for different output targets for packages
+
+    - #### `platform` [string]
+
+        Platform name — `darwin`, `win32`, or `linux` (default: `"darwin"`)
 
     - #### `arch` [string]
 
         Processor architecture (default: `"x64"`)
 
-    - #### `pathOutput` [string]
+    - #### `icon` [string]
 
-        Path to the folder where packaged apps should be created (default: `"app/packages"`)
+        Paths to Mac (`icns`) and Windows (`ico`) app icons (default: `undefined`)
 
-    - #### `pathWine` [string]
+    - #### `envPath` [string]
 
-        Path to [Wine](https://www.winehq.org) application, which is required in order to package for Windows from macOS. (default: `"/Applications/Wine Stable"`)
+        Additional paths to add to PATH environment variable, which is useful for using Wine to create Windows apps from a Mac (default: `undefined`)
 
-    - #### `zip` [boolean]
+- #### `zipPackage` [boolean]
 
-        Create date-stamped zip file of packaged app (default: `false`)
-
-
-- #### `pathBuild` [string]
-    Path to folder where Webpack builds the app. (default: `"app/build"`)
+    Create date-stamped zip file of packaged app (default: `false`)
 
 
 ## Scripts
