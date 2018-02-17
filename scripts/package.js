@@ -38,7 +38,7 @@ const getCmd = () => {
 
   let cmd = '';
 
-  cmd += `webpack --config config/webpack.prod.js;`
+  cmd += `webpack --config ./webpack.prod.js;`
       +  `mkdir -p ${pathOutput};`;
 
   if (toWindows) {

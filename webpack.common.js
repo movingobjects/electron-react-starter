@@ -1,7 +1,7 @@
 
-const path                           = require('path'),
-      CopyWebpackPlugin              = require('copy-webpack-plugin'),
-      HtmlWebpackPlugin              = require('html-webpack-plugin'),
+const path              = require('path'),
+      CopyWebpackPlugin = require('copy-webpack-plugin'),
+      HtmlWebpackPlugin = require('html-webpack-plugin');
       HtmlWebpackIncludeAssetsPlugin = require('html-webpack-include-assets-plugin');
 
 module.exports = {
@@ -11,7 +11,7 @@ module.exports = {
   },
 
   output: {
-    path: path.resolve(__dirname, '../app/build'),
+    path: path.resolve(__dirname, './app/build'),
     filename: 'resources/scripts/[name].bundle.js'
   },
 

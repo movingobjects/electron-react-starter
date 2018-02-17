@@ -21,13 +21,13 @@ const verb         = args.watch ? 'Watching' : 'Building',
 
 const getCmd = () => {
   if (args.browser && args.watch) {
-    return `webpack-dev-server --config config/webpack.dev.browser.js --hot --inline --open`;
+    return `webpack-dev-server --config ./webpack.dev.browser.js --hot --inline --open`;
   } else if (args.browser) {
-    return `webpack --config config/webpack.dev.browser.js`;
+    return `webpack --config ./webpack.dev.browser.js`;
   } else if (args.watch) {
-    return `webpack --config config/webpack.dev.js --watch`;
+    return `webpack --config ./webpack.dev.js --watch`;
   } else {
-    return `webpack --config config/webpack.dev.js`;
+    return `webpack --config ./webpack.dev.js`;
   }
 };
 
