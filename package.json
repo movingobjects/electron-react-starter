@@ -26,8 +26,8 @@
     "dev": "node ./scripts/build.js -w",
     "dev:web": "node ./scripts/build.js -wb",
     "enable-scripts": "node ./scripts/clean -s",
-    "package": "node ./scripts/package.js",
-    "package:win": "node ./scripts/package.js -w",
+    "package": "node ./scripts/package.js --target=mac",
+    "package:win": "node ./scripts/package.js --target=win",
     "reinstall": "node ./scripts/clean.js -m",
     "start": "node ./scripts/start.js"
   },
