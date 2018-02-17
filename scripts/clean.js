@@ -12,7 +12,7 @@ const args = parseArgs(process.argv.slice(2), {
   }
 });
 
-const pathPackageOutput = process.env.npm_package_config_package_pathOutput,
+const pathPackageOutput = process.env.npm_package_config_pathOutput,
       pathModules       = `node_modules`;
 
 
