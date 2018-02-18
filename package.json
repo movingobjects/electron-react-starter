@@ -5,13 +5,13 @@
   "description": "Boilerplate for Electron + React apps",
   "author": "Scott Thiessen (http://varyd.io)",
   "license": "ISC",
-  "homepage": "https://github.com/sccottt/electron-react-starter#readme",
+  "homepage": "https://github.com/movingobjects/electron-react-starter#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sccottt/electron-react-starter.git"
+    "url": "git+https://github.com/movingobjects/electron-react-starter.git"
   },
   "bugs": {
-    "url": "https://github.com/sccottt/electron-react-starter/issues"
+    "url": "https://github.com/movingobjects/electron-react-starter/issues"
   },
   "engines": {
     "node": ">=8",

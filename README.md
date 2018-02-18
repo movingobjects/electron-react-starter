@@ -11,7 +11,7 @@ Boilerplate for Electron + React apps.
 
 ## Installation
 
-1. [Download](https://github.com/sccottt/electron-react-starter/archive/master.zip) the repo
+1. [Download](https://github.com/movingobjects/electron-react-starter/archive/master.zip) the repo
 1. Update `package.json` to fit your specific project
 1. Install dependencies
 
