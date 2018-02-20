@@ -1,5 +1,5 @@
 # Electron React Starter
-Boilerplate for Electron + React apps.
+Webpack boilerplate for Electron + React apps (w/ Babel and Sass)
 
 
 ## Contents
