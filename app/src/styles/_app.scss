@@ -1,3 +1,25 @@
+
 body {
   font-family: $fontStd;
+  padding: 50px;
+}
+
+section {
+  border-top: 2px solid #ccc;
+  margin-bottom: 40px;
+}
+
+.test-img {
+  width: 100px;
+  height: 100px;
+}
+
+.test-bg-img {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.test-external-bg-img {
+  background-image: url('../assets/image.png');
 }
