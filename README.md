@@ -41,6 +41,8 @@ root
 │   ├── build
 │   ├── resources
 │   └── src
+│       ├── components
+│       └── styles
 └── packages
 └── scripts
 ```
@@ -61,6 +63,12 @@ root
 
     - #### `app/src`
         Stores the source code (which includes React components and any other scripts, HTML, styles, fonts, images, etc) for the Electron [renderer process](https://electronjs.org/docs/glossary#renderer-process). These can be structured in whatever way makes sense for the project.
+
+        - #### `app/src/components`
+            Recommended place to store your React components
+
+        - #### `app/src/styles`
+            Recommended place to store your Sass styles
 
 
 - #### `packages`
