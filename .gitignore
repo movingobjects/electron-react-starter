@@ -6,4 +6,4 @@ node_modules/
 
 # Project-specific
 app/build/
-app/packages/
+packages/
