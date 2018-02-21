@@ -16,7 +16,11 @@ module.exports = {
   },
 
   resolve: {
-    extensions: ['.js', '.jsx', '.json'],
+    extensions: [
+      '.js',
+      '.jsx',
+      '.json'
+    ],
     modules: [
       path.resolve(__dirname),
       'node_modules'
@@ -28,14 +32,10 @@ module.exports = {
 
       {
         test: /\.jsx?$/,
-        enforce: 'pre',
-        loader: 'source-map-loader'
-      },
-
-      {
-        test: /\.jsx?$/,
         loader: 'babel-loader',
-        exclude: /node_modules/,
+        include: [
+          path.resolve(__dirname, 'app')
+        ],
         options: {
           presets: ['react'],
           plugins: [
@@ -54,22 +54,6 @@ module.exports = {
       },
 
       {
-        test: /\.(mp3|aiff?|wav)$/i,
-        loader: 'file-loader',
-        options: {
-          name: 'resources/audio/[name].[ext]'
-        }
-      },
-
-      {
-        test: /\.(mp4|m4a|avi|mov)$/i,
-        loader: 'file-loader',
-        options: {
-          name: 'resources/video/[name].[ext]'
-        }
-      },
-
-      {
         test: /\.(ttf|otf|eot|woff|woff2)$/,
         loader: 'file-loader',
         options: {
@@ -78,13 +62,20 @@ module.exports = {
       },
 
       {
-        test: /\.scss$/,
-        use: [
-          { loader: 'style-loader' },
-          { loader: 'css-loader' },
-          { loader: 'sass-loader' }
-        ]
-      }
+        test: /\.(mp3|aif|aiff|wav)$/,
+        loader: 'file-loader',
+        options: {
+          name: 'resources/audio/[name].[ext]'
+        }
+      },
+
+      {
+        test: /\.(mp4|webm)$/,
+        loader: 'file-loader',
+        options: {
+          name: 'resources/video/[name].[ext]'
+        }
+      },
 
     ]
   },
