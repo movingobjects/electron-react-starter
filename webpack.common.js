@@ -1,8 +1,11 @@
 
 const path                           = require('path'),
       CopyWebpackPlugin              = require('copy-webpack-plugin'),
+      FaviconsWebpackPlugin          = require('favicons-webpack-plugin'),
       HtmlWebpackPlugin              = require('html-webpack-plugin'),
       HtmlWebpackIncludeAssetsPlugin = require('html-webpack-include-assets-plugin');
+
+const appTitle = process.env.npm_package_productName || process.env.npm_package_name;
 
 module.exports = {
 
@@ -91,9 +94,27 @@ module.exports = {
         to: 'resources/scripts/vendor/react/'
       },
     ]),
+    new FaviconsWebpackPlugin({
+      logo: './app/resources/favicon.png',
+      inject: true,
+      prefix: 'resources/icons/favicons/',
+      title: appTitle,
+      icons: {
+        android: false,
+        appleIcon: false,
+        appleStartup: false,
+        coast: false,
+        favicons: true,
+        firefox: false,
+        opengraph: false,
+        twitter: false,
+        windows: true,
+        yandex: false
+      }
+    }),
     new HtmlWebpackPlugin({
-      filename: 'index.html',
-      template: 'app/src/index.html'
+      title: appTitle,
+      filename: 'index.html'
     }),
     new HtmlWebpackIncludeAssetsPlugin({
       assets: [
