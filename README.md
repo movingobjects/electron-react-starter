@@ -11,7 +11,7 @@ Webpack boilerplate for Electron + React apps (w/ Babel and Sass)
 
 ## Installation
 
-1. [Download](https://github.com/movingobjects/electron-react-starter/archive/master.zip) the repo
+1. Download the [latest release](https://github.com/movingobjects/electron-react-starter/releases/latest)
 1. Update `package.json` to fit your specific project
 1. Install dependencies
 
@@ -29,8 +29,6 @@ Webpack boilerplate for Electron + React apps (w/ Babel and Sass)
     ```bash
     $ npm start
     ```
-
-You can also `git clone` or [mirror](https://help.github.com/articles/duplicating-a-repository/) the repo and retain the full commit history.
 
 
 ## Folder structure
