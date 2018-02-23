@@ -29,12 +29,9 @@ module.exports = merge(common, {
   plugins: [
     new ExtractTextPlugin('resources/styles/style.css'),
     new DefinePlugin({
-      IS_ELECTRON: true,
       IS_DEV: false,
       __DEV__: false,
-      'process.env': {
-        'NODE_ENV': JSON.stringify('production')
-      }
+      'process.env.NODE_ENV': JSON.stringify('production')
     })
   ],
 
