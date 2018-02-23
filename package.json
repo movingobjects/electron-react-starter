@@ -19,12 +19,10 @@
   },
   "main": "app/main.js",
   "scripts": {
-    "build:web": "node ./scripts/build.js -b",
     "build": "node ./scripts/build.js",
     "clean": "node ./scripts/clean -spm",
     "clear-packages": "node ./scripts/clean.js -p",
     "dev": "node ./scripts/build.js -w",
-    "dev:web": "node ./scripts/build.js -wb",
     "enable-scripts": "node ./scripts/clean -s",
     "package": "node ./scripts/package.js --target=mac",
     "package:win": "node ./scripts/package.js --target=win",

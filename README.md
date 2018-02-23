@@ -147,15 +147,6 @@ Default configuration of the [NPM scripts](#scripts) below can be overwritten in
 
 *Note: Scripts are set up to be run on macOS (but maybe work on Windows?).*
 
-
-### Dev using the browser
-
-Build & watch the application using [webpack-dev-server](https://github.com/webpack/webpack-dev-server). This can be especially useful for quick CSS injection.
-
-```bash
-$ npm run dev:web
-```
-
 ### Build for Electron
 
 Watch for changes in the `app/src/` folder and rebuild the app in real time:
