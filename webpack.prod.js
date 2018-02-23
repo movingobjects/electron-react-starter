@@ -31,9 +31,7 @@ module.exports = merge(common, {
     new DefinePlugin({
       IS_DEV: false,
       __DEV__: false,
-      'process.env': {
-        'NODE_ENV': JSON.stringify('production')
-      }
+      'process.env.NODE_ENV': JSON.stringify('production')
     })
   ],
 
