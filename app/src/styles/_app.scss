@@ -2,6 +2,8 @@
 body {
   font-family: $fontStd;
   padding: 50px;
+  background-color: white;
+  -webkit-app-region: drag;
 }
 
 section {
