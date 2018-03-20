@@ -1,11 +1,16 @@
 
 const { app, BrowserWindow } = require('electron'),
+      path                   = require('path'),
       electronReload         = require('electron-reload');
 
-let win,
-    pathBuild = `${__dirname}/build/`;
+const pathBuild    = path.join(__dirname, 'build'),
+      pathElectron = path.join(__dirname, '..', 'node_modules', '.bin', 'electron');
 
-electronReload(pathBuild);
+let win;
+
+electronReload(pathBuild, {
+  electron: pathElectron
+});
 
 app.on('ready', () => {
 
@@ -13,11 +18,12 @@ app.on('ready', () => {
     width: 750,
     height: 700,
     frame: false,
-    titleBarStyle: 'hidden-inset',
+    titleBarStyle: 'hiddenInset',
+    backgroundColor: '#ffffff',
     fullscreenable: true
   });
 
-  win.loadURL(`file://${pathBuild}index.html`);
+  win.loadURL(`file://${pathBuild}/index.html`);
 
 });
 
