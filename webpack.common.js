@@ -1,9 +1,7 @@
 
 const path                           = require('path'),
-      CopyWebpackPlugin              = require('copy-webpack-plugin'),
       FaviconsWebpackPlugin          = require('favicons-webpack-plugin'),
-      HtmlWebpackPlugin              = require('html-webpack-plugin'),
-      HtmlWebpackIncludeAssetsPlugin = require('html-webpack-include-assets-plugin');
+      HtmlWebpackPlugin              = require('html-webpack-plugin');
 
 const appTitle = process.env.npm_package_productName || process.env.npm_package_name;
 
@@ -84,16 +82,6 @@ module.exports = {
   },
 
   plugins: [
-    new CopyWebpackPlugin([
-      {
-        from: 'node_modules/react/dist/react.js',
-        to: 'resources/scripts/vendor/react/'
-      },
-      {
-        from: 'node_modules/react-dom/dist/react-dom.js',
-        to: 'resources/scripts/vendor/react/'
-      },
-    ]),
     new FaviconsWebpackPlugin({
       logo: './app/resources/favicon.png',
       inject: true,
@@ -115,19 +103,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: appTitle,
       filename: 'index.html'
-    }),
-    new HtmlWebpackIncludeAssetsPlugin({
-      assets: [
-        'resources/scripts/vendor/react/react.js',
-        'resources/scripts/vendor/react/react-dom.js'
-      ],
-      append: false
     })
-  ],
-
-  externals: {
-    'react': 'React',
-    'react-dom': 'ReactDOM'
-  },
+  ]
 
 };
